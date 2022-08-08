@@ -27,14 +27,14 @@ function fmtDelegate(input) {
 
         if (raw.length > group_size) {
             let children = group.children;
-            let regex = new RegExp(`.{1,${group_size}}`, 'g');
+            let chunks = raw.match(new RegExp(`.{1,${group_size}}`, 'g'));
     
             group.classList.remove("hide");
 
             for (let i = 0; i < children.length; i++) {
                 let child = children[i];
                 let separator = child.dataset.sep;
-                child.value = raw.match(regex).join(separator);
+                child.value = chunks.join(separator);
             }
         } else {
             group.classList.add("hide");
