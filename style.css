@@ -1,8 +1,8 @@
-.fmtGroup {
-    visibility: hidden;
-}
-
-.fmtOut {
+.fmtGroup > * {
     font-family: monospace;
     text-transform: lowercase;
+}
+
+.hide {
+    display: none;
 }

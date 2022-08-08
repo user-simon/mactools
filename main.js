@@ -29,7 +29,7 @@ function fmtDelegate(input) {
             let children = group.children;
             let regex = new RegExp(`.{1,${group_size}}`, 'g');
     
-            groups[i].style.visibility = "visible";
+            group.classList.remove("hide");
 
             for (let i = 0; i < children.length; i++) {
                 let child = children[i];
@@ -37,7 +37,7 @@ function fmtDelegate(input) {
                 child.value = raw.match(regex).join(separator);
             }
         } else {
-            groups[i].style.visibility = "hidden";
+            group.classList.add("hide");
         }
     }
 }
