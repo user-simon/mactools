@@ -1,3 +1,18 @@
+function toggleCase(uppercase) {
+    let outputs = document.getElementsByClassName("fmtOut");
+    let textTransform;
+
+    if (uppercase) {
+        textTransform = "uppercase";
+    } else {
+        textTransform = "lowercase";
+    }
+
+    for (let i = 0; i < outputs.length; i++) {
+        outputs[i].style.textTransform = textTransform;
+    }
+}
+
 function onUpdate(input) {
     fmtDelegate(input)
 }

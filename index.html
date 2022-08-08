@@ -9,16 +9,16 @@
 </head>
 <body>
     <input type="text" id="mac" autofocus oninput="onUpdate(this.value)">
-    <input type="checkbox" id="uppercase">
+    <input type="checkbox" id="uppercase" oninput="toggleCase(this.checked)">
     <div class="fmtGroup" data-size="2">
-        <input type="text" data-sep=":" readonly>
-        <input type="text" data-sep="-" readonly>
-        <input type="text" data-sep="." readonly>
+        <input type="text" class="fmtOut" data-sep=":" readonly>
+        <input type="text" class="fmtOut" data-sep="-" readonly>
+        <input type="text" class="fmtOut" data-sep="." readonly>
     </div>
     <div class="fmtGroup" data-size="4">
-        <input type="text" data-sep=":" readonly>
-        <input type="text" data-sep="-" readonly>
-        <input type="text" data-sep="." readonly>
+        <input type="text" class="fmtOut" data-sep=":" readonly>
+        <input type="text" class="fmtOut" data-sep="-" readonly>
+        <input type="text" class="fmtOut" data-sep="." readonly>
     </div>
     <h2 id="lookup" hidden></h2>
 </body>
