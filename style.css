@@ -1,3 +1,7 @@
-.fmtResult > * {
+.fmtGroup > * {
     font-family: monospace;
+}
+
+.fmtGroup {
+    visibility: hidden;
 }

@@ -8,20 +8,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input type="text" id="mac" autofocus oninput="onMACUpdate(this.value)">
+    <input type="text" id="mac" autofocus oninput="onUpdate(this.value)">
     <input type="checkbox" id="uppercase">
-    <div class="fmtResult" id="2" hidden>
+    <div class="fmtGroup" data-size="2">
         <input type="text" data-sep=":" readonly>
         <input type="text" data-sep="-" readonly>
         <input type="text" data-sep="." readonly>
     </div>
-    <div class="fmtResult" id="4" hidden>
+    <div class="fmtGroup" data-size="4">
         <input type="text" data-sep=":" readonly>
         <input type="text" data-sep="-" readonly>
         <input type="text" data-sep="." readonly>
     </div>
-    <div id="lutResult">
-        <h2></h2>
-    </div>
+    <h2 id="lookup" hidden></h2>
 </body>
 </html>
