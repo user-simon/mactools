@@ -1,3 +1,13 @@
+body {
+    margin: 0;
+}
+
+#mac {
+    border: none;
+    padding: 1.25em;
+    font-family: monospace;
+}
+
 .fmtGroup > * {
     font-family: monospace;
     text-transform: lowercase;
@@ -5,4 +15,14 @@
 
 .hide {
     display: none;
+}
+
+.inputArea {
+    background-color: #F56161;
+    height: 10vh;
+}
+
+.footer {
+    background-color: #61E1F5;
+    height: 50vh;
 }

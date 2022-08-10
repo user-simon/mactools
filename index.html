@@ -8,18 +8,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input type="text" id="mac" autofocus oninput="onUpdate(this.value)">
-    <input type="checkbox" id="uppercase" oninput="toggleCase(this.checked)">
-    <div class="fmtGroup hide" data-size="2">
-        <input type="text" class="fmtOut" data-sep=":" readonly>
-        <input type="text" class="fmtOut" data-sep="-" readonly>
-        <input type="text" class="fmtOut" data-sep="." readonly>
+    <div class="inputArea">
+        <input type="text" id="mac" autofocus oninput="onUpdate(this.value)">
+        <input type="checkbox" id="uppercase" oninput="setFmtCase(this.checked)">
     </div>
-    <div class="fmtGroup hide" data-size="4">
-        <input type="text" class="fmtOut" data-sep=":" readonly>
-        <input type="text" class="fmtOut" data-sep="-" readonly>
-        <input type="text" class="fmtOut" data-sep="." readonly>
+    <div class="result">
+        <div class="fmtGroup hide" data-grouping="2">
+            <input type="text" class="fmtOut" data-sep=":" readonly>
+            <input type="text" class="fmtOut" data-sep="-" readonly>
+            <input type="text" class="fmtOut" data-sep="." readonly>
+        </div>
+        <div class="fmtGroup hide" data-grouping="4">
+            <input type="text" class="fmtOut" data-sep=":" readonly>
+            <input type="text" class="fmtOut" data-sep="-" readonly>
+            <input type="text" class="fmtOut" data-sep="." readonly>
+        </div>
+        <h2 id="queryResult"></h2>
     </div>
-    <h2 id="lookup" hidden></h2>
+    <div class="footer">
+
+    </div>
 </body>
 </html>
