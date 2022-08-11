@@ -1,34 +1,49 @@
-function setFmtCase(uppercase) {
-    let outputs = document.getElementsByClassName("fmtOut");
-    let textTransform;
-
-    if (uppercase) {
-        textTransform = "uppercase";
-    } else {
-        textTransform = "lowercase";
-    }
+function setCasing(uppercase) {
+    let outputs = document.getElementsByClassName("macOut");
+    let textTransform = (() => {
+        if (uppercase) {
+            return "uppercase";
+        } else {
+            return "lowercase";
+        }
+    })();
 
     for (let i = 0; i < outputs.length; i++) {
         outputs[i].style.textTransform = textTransform;
     }
+    document.getElementById("casingLabel").style.textTransform = textTransform;
 }
 
-function onUpdate(input) {
-    let raw = updateFmt(input);
-    
-    if (raw.length >= 6) {
-        queryVendor(raw.slice(0, 6));
+function onKeyDown(event) {
+    if (event.key == "Enter") {
+        onEnter();
     }
 }
 
-function updateFmt(input) {
-    let raw = input.replace(/[^0-9a-fA-F]/gi, '');
-    let groups = document.getElementsByClassName("fmtGroup");
+function onEnter() {
+    document.getElementById("output").classList.add("outputExpand");
+
+    let input = document.getElementById("macIn");
+    let raw = format(input.value);
+    input.value = raw;
     
+    vendorQuery(raw);
+}
+
+function format(input) {
+    // filter all non-hex characters
+    let raw = input.replace(/[^0-9a-fA-F]/gi, '');
+    let groups = document.getElementsByClassName("groupOut");
+    
+    // formatting information is encoded in the HTML for the outputs themselves. Grouping size is
+    // defined with attribute "data-groupings" and the separator is defined as "data-sep". iterate
+    // over all groupings and then over all separators and display the format output
     for (let i = 0; i < groups.length; i++) {
         let group = groups[i];
         let grouping_size = group.dataset.grouping;
 
+        // hide group if input isn't long enough to cover more than one grouping, as the result
+        // would otherwise be meaningless
         if (raw.length > grouping_size) {
             let children = group.children;
             let groupings = raw.match(new RegExp(`.{1,${grouping_size}}`, 'g'));
@@ -47,14 +62,29 @@ function updateFmt(input) {
     return raw;
 }
 
-function queryVendor(mac) {
-    console.log("Making query...");
-    let script = document.createElement('script');
-    script.src = `https://api.maclookup.app/v2/macs/${mac}?format=jsonp&callback=vendorReceive`;
-    document.querySelector('head').appendChild(script);
-    script.parentNode.removeChild(script);
+function vendorQuery(mac) {
+    if (mac.length >= 6) {
+        let prefix = mac.slice(0, 6);
+        console.log(`Querying prefix ${prefix }...`);
+
+        let script = document.createElement('script');
+        script.src = `https://api.maclookup.app/v2/macs/${prefix}?format=jsonp&callback=vendorReceive`;
+        document.querySelector('head').appendChild(script);
+        script.parentNode.removeChild(script);
+    } else {
+        document.getElementById("vendorOut").innerHTML = "✖ MAC too short";
+    }
 }
 
 function vendorReceive(response) {
-    document.getElementById("queryResult").innerHTML = response.company;
+    console.log("Query response received");
+    document.getElementById("vendorOut").innerHTML = (() => {
+        if (!response.success) {
+            return "✖ Query failed";
+        } else if (!response.found) {
+            return "✖ Unknown vendor";
+        } else {
+            return response.company;
+        }
+    })();
 }

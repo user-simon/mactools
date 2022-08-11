@@ -7,26 +7,36 @@
     <script src="main.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="inputArea">
-        <input type="text" id="mac" autofocus oninput="onUpdate(this.value)">
-        <input type="checkbox" id="uppercase" oninput="setFmtCase(this.checked)">
-    </div>
-    <div class="result">
-        <div class="fmtGroup hide" data-grouping="2">
-            <input type="text" class="fmtOut" data-sep=":" readonly>
-            <input type="text" class="fmtOut" data-sep="-" readonly>
-            <input type="text" class="fmtOut" data-sep="." readonly>
+<body onkeyup="onKeyDown(event)">
+    <div id="main">
+        <div id="input">
+            <input type="text" id="macIn" class="mac" autofocus>
         </div>
-        <div class="fmtGroup hide" data-grouping="4">
-            <input type="text" class="fmtOut" data-sep=":" readonly>
-            <input type="text" class="fmtOut" data-sep="-" readonly>
-            <input type="text" class="fmtOut" data-sep="." readonly>
+        <div id="output">
+            <div id="formatOut">
+                <input type="checkbox" id="toggleCase" oninput="setCasing(this.checked)">
+                <label for="toggleCase" id="casingLabel">Casing</label>
+                <div class="groupOut" data-grouping="2">
+                    <input type="text" class="macOut mac" data-sep=":" readonly>
+                    <input type="text" class="macOut mac" data-sep="-" readonly>
+                    <input type="text" class="macOut mac" data-sep="." readonly>
+                </div>
+                <div class="groupOut" data-grouping="4">
+                    <input type="text" class="macOut mac" data-sep=":" readonly>
+                    <input type="text" class="macOut mac" data-sep="-" readonly>
+                    <input type="text" class="macOut mac" data-sep="." readonly>
+                </div>
+            </div>
+            <div id="vendorOutWrapper">
+                <h1 id="vendorOut"></h1>
+            </div>
         </div>
-        <h2 id="queryResult"></h2>
     </div>
-    <div class="footer">
-
-    </div>
+    <p id="footer">
+        View source on <a href="https://github.com/user-simon/mactools">GitHub</a>
+        <br>
+        Using MAC vendor API from <a href="https://maclookup.app/">maclookup.app</a>
+        <br>
+    </p>
 </body>
 </html>

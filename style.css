@@ -1,28 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Raleway:ital@0;1&family=Staatliches&display=swap');
+
 body {
+    --textColor: #1e1e1e;
+
+    margin: 0;
+    color: var(--textColor);
+    font-family: "Raleway";
+    letter-spacing: 0.15em;
+}
+
+#main {
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+}
+
+#input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-grow: 1;
+    background-color: #ec5656;
+    z-index: 1;
+    box-shadow: #64646f33 0px 7px 29px 0px;
+}
+
+#output {
+    height: 0;
+    overflow: hidden;
+    transition: 0.2s;
+    transition-timing-function: ease-in-out;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#footer {
+    height: 25vh;
+    background-color: #81effd;
     margin: 0;
 }
 
-#mac {
-    border: none;
-    padding: 1.25em;
-    font-family: monospace;
+#macIn {
+    text-align: center;
+    padding: 0.75em;
+    font-size: 2rem;
+    border-radius: 0.15em;
+    box-shadow: #64646f33 0px 7px 29px 0px;
 }
 
-.fmtGroup > * {
-    font-family: monospace;
+#formatOut {
+    background-color: #f4f9fc;
+}
+
+#vendorOutWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#vendorOut {
+    font-family: "Staatliches";
+    font-size: 5rem;
+    text-align: right;
+    letter-spacing: 0.1em;
+    
+    margin: 0;
+    padding: 0 1.5em;
+}
+
+#casingLabel {
     text-transform: lowercase;
+}
+
+.outputExpand {
+    height: 50vh !important;
+}
+
+.mac {
+    font-family: "JetBrains Mono";
+    text-transform: lowercase;
+    letter-spacing: 0.1em;
+}
+
+.macOut {
+    padding: 0.25em;
+    background-color: transparent;
+    border-bottom: 1px solid var(--textColor);
 }
 
 .hide {
     display: none;
 }
 
-.inputArea {
-    background-color: #F56161;
-    height: 10vh;
+a {
+    color: inherit;
+    font-style: italic;
 }
 
-.footer {
-    background-color: #61E1F5;
-    height: 50vh;
+input {
+    border: none;
 }
