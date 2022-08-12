@@ -4,27 +4,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MACTOOLS</title>
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body onkeyup="onKeyDown(event)">
+<body>
     <div id="main">
         <div id="input">
-            <input type="text" id="macIn" class="mac" autofocus>
+            <input type="text" id="macIn" class="mac" autocomplete="off" autofocus>
         </div>
         <div id="output">
             <div id="formatOut">
-                <input type="checkbox" id="toggleCase" oninput="setCasing(this.checked)">
-                <label for="toggleCase" id="casingLabel">Casing</label>
+                <input type="checkbox" id="toggleCase">
+                <label for="toggleCase" id="casingLabel">Toggle Case</label>
                 <div class="groupOut" data-grouping="2">
-                    <input type="text" class="macOut mac" data-sep=":" readonly>
-                    <input type="text" class="macOut mac" data-sep="-" readonly>
-                    <input type="text" class="macOut mac" data-sep="." readonly>
+                    <input type="text" class="mac" data-sep=":" readonly>
+                    <input type="text" class="mac" data-sep="-" readonly>
+                    <input type="text" class="mac" data-sep="." readonly>
                 </div>
                 <div class="groupOut" data-grouping="4">
-                    <input type="text" class="macOut mac" data-sep=":" readonly>
-                    <input type="text" class="macOut mac" data-sep="-" readonly>
-                    <input type="text" class="macOut mac" data-sep="." readonly>
+                    <input type="text" class="mac" data-sep=":" readonly>
+                    <input type="text" class="mac" data-sep="-" readonly>
+                    <input type="text" class="mac" data-sep="." readonly>
                 </div>
             </div>
             <div id="vendorOutWrapper">
@@ -32,11 +32,13 @@
             </div>
         </div>
     </div>
-    <p id="footer">
-        View source on <a href="https://github.com/user-simon/mactools">GitHub</a>
-        <br>
-        Using MAC vendor API from <a href="https://maclookup.app/">maclookup.app</a>
-        <br>
-    </p>
+    <div id="footer">
+        <p>
+            View source on <a href="https://github.com/user-simon/mactools">GitHub</a>
+            <br>
+            Using MAC vendor API from <a href="https://maclookup.app/">maclookup.app</a>
+            <br>
+        </p>
+    </div>
 </body>
 </html>

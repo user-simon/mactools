@@ -19,6 +19,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0;
 
     flex-grow: 1;
     background-color: #ec5656;
@@ -33,12 +34,30 @@ body {
     transition-timing-function: ease-in-out;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+}
+
+@media (orientation: portrait) {
+    #output {
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+@media (orientation: landscape) {
+    #output {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 #footer {
+    display: flex;
+    text-align: center;
+    align-items: center;
+
     height: 25vh;
     background-color: #81effd;
+}
+
+#footer > p {
     margin: 0;
 }
 
@@ -84,7 +103,7 @@ body {
     letter-spacing: 0.1em;
 }
 
-.macOut {
+.groupOut > input[type="text"] {
     padding: 0.25em;
     background-color: transparent;
     border-bottom: 1px solid var(--textColor);

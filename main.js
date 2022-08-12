@@ -1,38 +1,50 @@
-function setCasing(uppercase) {
-    let outputs = document.getElementsByClassName("macOut");
+document.getElementById("macIn").addEventListener("keyup", ({target, key}) => {
+    if (key === "Enter") {
+        processRaw(normalizeMac(target.value));
+    }
+});
+document.getElementById("macIn").addEventListener("input", ({target}) => {
+    let mac = target.value;
+
+    if (mac.length == 0) {
+        document.getElementById("output").classList.remove("outputExpand");
+    } else {
+        let raw = normalizeMac(mac);
+
+        if (raw.length >= 12) {
+            processRaw(raw);
+        }
+    }
+});
+document.getElementById("toggleCase").addEventListener("input", ({target}) => {
     let textTransform = (() => {
-        if (uppercase) {
+        if (target.checked) {
             return "uppercase";
         } else {
             return "lowercase";
         }
     })();
-
+    let outputs = document.getElementsByClassName("mac");
+    
     for (let i = 0; i < outputs.length; i++) {
         outputs[i].style.textTransform = textTransform;
     }
     document.getElementById("casingLabel").style.textTransform = textTransform;
+})
+
+function normalizeMac(mac) {
+    return mac.replace(/[^0-9a-fA-F]/gi, '');
 }
 
-function onKeyDown(event) {
-    if (event.key == "Enter") {
-        onEnter();
-    }
-}
-
-function onEnter() {
+function processRaw(raw) {
     document.getElementById("output").classList.add("outputExpand");
+    document.getElementById("macIn").value = raw;
 
-    let input = document.getElementById("macIn");
-    let raw = format(input.value);
-    input.value = raw;
-    
+    format(raw);
     vendorQuery(raw);
 }
 
-function format(input) {
-    // filter all non-hex characters
-    let raw = input.replace(/[^0-9a-fA-F]/gi, '');
+function format(raw) {
     let groups = document.getElementsByClassName("groupOut");
     
     // formatting information is encoded in the HTML for the outputs themselves. Grouping size is
@@ -62,11 +74,14 @@ function format(input) {
     return raw;
 }
 
-function vendorQuery(mac) {
-    if (mac.length >= 6) {
-        let prefix = mac.slice(0, 6);
+function vendorQuery(raw) {
+    if (raw.length >= 6) {
+        document.getElementById("vendorOut").innerHTML = "";
+        
+        let prefix = raw.slice(0, 6);
         console.log(`Querying prefix ${prefix }...`);
-
+        
+        // perform jsonp query of mac vendor
         let script = document.createElement('script');
         script.src = `https://api.maclookup.app/v2/macs/${prefix}?format=jsonp&callback=vendorReceive`;
         document.querySelector('head').appendChild(script);
