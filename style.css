@@ -107,8 +107,16 @@ body {
     padding: 0 1.5em;
 }
 
-.outputExpand {
-    height: 50vh !important;
+@media (orientation: portrait) {
+    .outputExpand {
+        height: 75vh !important;
+    }
+}
+
+@media (orientation: landscape) {
+    .outputExpand {
+        height: 50vh !important;
+    }
 }
 
 .mac {
@@ -120,13 +128,15 @@ body {
 .formatGroup {
     display: flex;
     flex-flow: column;
-    margin: 1em;
+    margin: 0 1em;
 }
 
 .formatGroup > input[type="text"] {
     padding: 0.25em;
     background-color: transparent;
     border-bottom: 1px solid var(--textColor);
+    font-size: 1rem;
+    margin-top: 1em;
 }
 
 .hide {
