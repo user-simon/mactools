@@ -1,8 +1,10 @@
+// Process MAC when enter is pressed
 document.getElementById("macIn").addEventListener("keyup", ({target, key}) => {
     if (key === "Enter") {
         processRaw(normalizeMac(target.value));
     }
 });
+// Process MAC if more than 12 valid characters have been entered. Hide output if input is cleared
 document.getElementById("macIn").addEventListener("input", ({target}) => {
     let mac = target.value;
 
@@ -16,6 +18,7 @@ document.getElementById("macIn").addEventListener("input", ({target}) => {
         }
     }
 });
+// Toggle case on all MAC-addresses
 document.getElementById("toggleCase").addEventListener("click", (() => {
     let staticToggle = false;
 
@@ -37,19 +40,22 @@ document.getElementById("toggleCase").addEventListener("click", (() => {
     }
 })());
 
+// Removes all non-hex characters from input
 function normalizeMac(mac) {
     return mac.replace(/[^0-9a-fA-F]/gi, '');
 }
 
+// Performs and displays formatting and vendor query
 function processRaw(raw) {
     document.getElementById("output").classList.add("outputExpand");
-    document.getElementById("macIn").value = raw;
 
     format(raw);
     vendorQuery(raw);
 }
 
+// Performs and displays all MAC formatting
 function format(raw) {
+    document.getElementById("macIn").value = raw;
     let groups = document.getElementsByClassName("formatGroup");
     
     // formatting information is encoded in the HTML for the outputs themselves. Grouping size is
@@ -79,6 +85,7 @@ function format(raw) {
     return raw;
 }
 
+// Performs query for MAC vendor from maclookup.app
 function vendorQuery(raw) {
     if (raw.length >= 6) {
         document.getElementById("vendorOut").innerHTML = "";
@@ -96,6 +103,7 @@ function vendorQuery(raw) {
     }
 }
 
+// Receives response after vendorQuery
 function vendorReceive(response) {
     console.log("Query response received");
     document.getElementById("vendorOut").innerHTML = (() => {
