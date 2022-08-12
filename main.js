@@ -16,21 +16,26 @@ document.getElementById("macIn").addEventListener("input", ({target}) => {
         }
     }
 });
-document.getElementById("toggleCase").addEventListener("input", ({target}) => {
-    let textTransform = (() => {
-        if (target.checked) {
-            return "uppercase";
-        } else {
-            return "lowercase";
+document.getElementById("toggleCase").addEventListener("click", (() => {
+    let staticToggle = false;
+
+    return ({target}) => {
+        staticToggle = !staticToggle;
+        let textTransform = (() => {
+            if (staticToggle) {
+                return "uppercase";
+            } else {
+                return "lowercase";
+            }
+        })();
+        let outputs = document.getElementsByClassName("mac");
+        
+        for (let i = 0; i < outputs.length; i++) {
+            outputs[i].style.textTransform = textTransform;
         }
-    })();
-    let outputs = document.getElementsByClassName("mac");
-    
-    for (let i = 0; i < outputs.length; i++) {
-        outputs[i].style.textTransform = textTransform;
+        target.style.textTransform = textTransform;
     }
-    document.getElementById("casingLabel").style.textTransform = textTransform;
-})
+})());
 
 function normalizeMac(mac) {
     return mac.replace(/[^0-9a-fA-F]/gi, '');
@@ -45,7 +50,7 @@ function processRaw(raw) {
 }
 
 function format(raw) {
-    let groups = document.getElementsByClassName("groupOut");
+    let groups = document.getElementsByClassName("formatGroup");
     
     // formatting information is encoded in the HTML for the outputs themselves. Grouping size is
     // defined with attribute "data-groupings" and the separator is defined as "data-sep". iterate
@@ -77,7 +82,7 @@ function format(raw) {
 function vendorQuery(raw) {
     if (raw.length >= 6) {
         document.getElementById("vendorOut").innerHTML = "";
-        
+
         let prefix = raw.slice(0, 6);
         console.log(`Querying prefix ${prefix }...`);
         

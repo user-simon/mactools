@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Raleway:ital@0;1&family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Raleway:ital,wght@0,500;1,500&family=Staatliches&display=swap');
 
 body {
     --textColor: #1e1e1e;
@@ -50,14 +50,16 @@ body {
 
 #footer {
     display: flex;
-    text-align: center;
     align-items: center;
+    justify-content: center;
 
     height: 25vh;
     background-color: #81effd;
 }
 
 #footer > p {
+    text-align: center;
+    line-height: 2.5em;
     margin: 0;
 }
 
@@ -70,7 +72,23 @@ body {
 }
 
 #formatOut {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
     background-color: #f4f9fc;
+}
+
+#toggleCase {
+    text-transform: lowercase;
+    font-style: italic;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#formatGroups {
+    display: flex;
+    flex-flow: row;
 }
 
 #vendorOutWrapper {
@@ -89,10 +107,6 @@ body {
     padding: 0 1.5em;
 }
 
-#casingLabel {
-    text-transform: lowercase;
-}
-
 .outputExpand {
     height: 50vh !important;
 }
@@ -103,7 +117,13 @@ body {
     letter-spacing: 0.1em;
 }
 
-.groupOut > input[type="text"] {
+.formatGroup {
+    display: flex;
+    flex-flow: column;
+    margin: 1em;
+}
+
+.formatGroup > input[type="text"] {
     padding: 0.25em;
     background-color: transparent;
     border-bottom: 1px solid var(--textColor);
