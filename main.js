@@ -1,6 +1,6 @@
 // Process MAC when enter is pressed
 document.getElementById("macIn").addEventListener("keyup", ({target, key}) => {
-    if (key === "Enter") {
+    if (key === "Enter" && target.value.length !== 0) {
         processRaw(normalizeMac(target.value));
     }
 });
@@ -8,7 +8,8 @@ document.getElementById("macIn").addEventListener("keyup", ({target, key}) => {
 document.getElementById("macIn").addEventListener("input", ({target}) => {
     let mac = target.value;
 
-    if (mac.length == 0) {
+    if (mac.length === 0) {
+        document.getElementById("vendorOut").innerHTML = "";
         document.getElementById("output").classList.remove("outputExpand");
     } else {
         let raw = normalizeMac(mac);
@@ -88,8 +89,6 @@ function format(raw) {
 // Performs query for MAC vendor from maclookup.app
 function vendorQuery(raw) {
     if (raw.length >= 6) {
-        document.getElementById("vendorOut").innerHTML = "";
-
         let prefix = raw.slice(0, 6);
         console.log(`Querying prefix ${prefix }...`);
         
