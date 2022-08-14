@@ -10,7 +10,7 @@ document.getElementById("macIn").addEventListener("input", ({target}) => {
 
     if (mac.length === 0) {
         document.getElementById("vendorOut").innerHTML = "";
-        document.getElementById("output").classList.remove("outputExpand");
+        document.getElementById("output").hidden = true;
     } else {
         let raw = normalizeMac(mac);
 
@@ -48,7 +48,7 @@ function normalizeMac(mac) {
 
 // Performs and displays formatting and vendor query
 function processRaw(raw) {
-    document.getElementById("output").classList.add("outputExpand");
+    document.getElementById("output").hidden = false;
 
     format(raw);
     vendorQuery(raw);
