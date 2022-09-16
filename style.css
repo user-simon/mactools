@@ -5,7 +5,7 @@ body {
 
     margin: 0;
     color: var(--textColor);
-    font-family: "Raleway";
+    font-family: "Raleway", sans-serif;
     letter-spacing: 0.15em;
 }
 
@@ -88,8 +88,9 @@ body {
 }
 
 #vendorOut {
-    font-family: "Staatliches";
+    font-family: "Staatliches", sans-serif;
     font-size: min(10vw, 5rem);
+    font-weight: 800;
     text-align: right;
     letter-spacing: 0.1em;
     
@@ -121,7 +122,7 @@ body {
 }
 
 .mac {
-    font-family: "JetBrains Mono";
+    font-family: "JetBrains Mono", monospace;
     text-transform: lowercase;
     letter-spacing: 0.1em;
 }
