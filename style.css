@@ -9,7 +9,7 @@ body {
     letter-spacing: 0.15em;
 }
 
-#main {
+main {
     height: 100vh;
     display: flex;
     flex-flow: column;
@@ -106,7 +106,7 @@ body {
     transform: translateY(50vh);
 }
 
-#footer {
+footer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -115,7 +115,7 @@ body {
     background-color: #81effd;
 }
 
-#footer > p {
+footer > p {
     text-align: center;
     line-height: 2.5em;
     margin: 0;
