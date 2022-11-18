@@ -92,13 +92,13 @@ main {
 
 #vendorOut {
     font-family: "Staatliches", sans-serif;
-    font-size: min(10vw, 5rem);
+    font-size: min(4vw, 4.75rem);
     font-weight: 800;
     text-align: right;
     letter-spacing: 0.1em;
     
     margin: 0;
-    padding: 0 1.4em;
+    padding: 0 2em;
 
     transition-delay: 1s;
     transition: transform 0.4s;
