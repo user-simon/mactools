@@ -1,9 +1,12 @@
+macUpperCase = false
+
 // Process MAC when enter is pressed
 document.getElementById("macIn").addEventListener("keyup", ({target, key}) => {
     if (key === "Enter" && target.value.length !== 0) {
         processRaw(normalizeMac(target.value));
     }
 });
+
 // Process MAC if more than 12 valid characters have been entered. Hide output if input is cleared
 document.getElementById("macIn").addEventListener("input", ({target}) => {
     let mac = target.value;
@@ -19,31 +22,32 @@ document.getElementById("macIn").addEventListener("input", ({target}) => {
         }
     }
 });
-// Toggle case on all MAC-addresses
-document.getElementById("toggleCase").addEventListener("click", (() => {
-    let staticToggle = false;
 
-    return ({target}) => {
-        staticToggle = !staticToggle;
-        let textTransform = (() => {
-            if (staticToggle) {
-                return "uppercase";
-            } else {
-                return "lowercase";
-            }
-        })();
-        let outputs = document.getElementsByClassName("mac");
-        
-        for (let i = 0; i < outputs.length; i++) {
-            outputs[i].style.textTransform = textTransform;
-        }
-        target.style.textTransform = textTransform;
+// Toggle case on all MAC-address displays
+document.getElementById("toggleCase").addEventListener("click", ({target}) => {
+    macUpperCase = !macUpperCase;
+
+    target.innerHTML = setCase(target.innerHTML);
+
+    let displays = document.getElementsByClassName("mac");
+    
+    for (let i = 0; i < displays.length; i++) {
+        displays[i].value = setCase(displays[i].value);
     }
-})());
+});
+
+// Returns input with character casing defined by the global `macUpperCase` switch
+function setCase(value) {
+    if (macUpperCase) {
+        return value.toUpperCase();
+    } else {
+        return value.toLowerCase();
+    }
+}
 
 // Removes all non-hex characters from input
 function normalizeMac(mac) {
-    return mac.replace(/[^0-9a-fA-F]/gi, '');
+    return setCase(mac.replace(/[^0-9a-fA-F]/gi, ''))
 }
 
 // Performs and displays formatting and vendor query

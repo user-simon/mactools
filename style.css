@@ -70,7 +70,6 @@ main {
 }
 
 #toggleCase {
-    text-transform: lowercase;
     font-style: italic;
     text-decoration: underline;
     cursor: pointer;
@@ -123,7 +122,6 @@ footer > p {
 
 .mac {
     font-family: "JetBrains Mono", monospace;
-    text-transform: lowercase;
     letter-spacing: 0.1em;
 }
 
