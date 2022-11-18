@@ -35,6 +35,10 @@ main {
     box-shadow: #00000030 0px 5px 29px 0px;
 }
 
+#macIn::placeholder {
+    color: #c8c8c8;
+}
+
 #output {
     overflow: hidden;
     transition: 0.2s;
